@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>For You ♡</title>
+<style>
+*{box-sizing:border-box}
+:root{
+  --pink:#f58aaa; --deep:#9b3658; --soft:#fff4f7; --ink:#4b2734;
+}
+html,body{margin:0;min-height:100%;font-family:system-ui,-apple-system,Segoe UI,sans-serif}
+body{
+  min-height:100vh; display:grid; place-items:center; overflow:hidden;
+  background:linear-gradient(145deg,#ffdfe9,#fff7f9 55%,#ffd5e2);
+  color:var(--ink);
+}
+#app{width:min(94vw,520px); min-height:650px; position:relative}
+.card{
+  min-height:650px; padding:34px 25px 25px; border-radius:30px;
+  background:rgba(255,255,255,.72); backdrop-filter:blur(12px);
+  box-shadow:0 20px 60px rgba(128,50,78,.16);
+  display:flex; flex-direction:column; justify-content:center; align-items:center;
+  text-align:center; position:relative; overflow:hidden;
+}
+.screen{width:100%; display:none; animation:in .45s ease}
+.screen.active{display:block}
+@keyframes in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+h1{font-size:34px;line-height:1.08;margin:12px 0;color:var(--deep)}
+h2{font-size:27px;margin:12px 0;color:var(--deep)}
+p{font-size:17px;line-height:1.65;margin:12px auto;max-width:430px}
+.small{font-size:14px;opacity:.72}
+.bunny{font-size:96px;line-height:1;margin-bottom:8px;animation:bob 2.4s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-8px)}}
+.heart{font-size:52px;animation:pulse 1.4s infinite}
+@keyframes pulse{50%{transform:scale(1.12)}}
+.message{
+  background:#fffafa;border:1px solid #f5d4df;border-radius:22px;
+  padding:18px 19px;margin:18px 0;text-align:left;
+}
+.message strong{color:var(--deep)}
+.actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:22px}
+button{
+  border:0;border-radius:999px;padding:13px 22px;font-size:16px;font-weight:700;
+  cursor:pointer;min-height:46px;transition:.2s transform,.2s box-shadow;
+}
+button:hover{transform:translateY(-2px)}
+.primary{background:var(--pink);color:white;box-shadow:0 8px 20px rgba(245,138,170,.3)}
+.secondary{background:white;color:var(--deep);border:1px solid #edc2cf}
+.progress{position:absolute;top:18px;left:25px;right:25px;height:5px;background:#f3d8e0;border-radius:10px;overflow:hidden}
+.bar{height:100%;width:20%;background:var(--pink);border-radius:10px;transition:width .35s}
+.dots{letter-spacing:5px;color:#d98aa2;margin-top:14px}
+.note{font-style:italic;color:#8c5668}
+.float{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.float span{position:absolute;opacity:.35;animation:fall 8s linear infinite}
+@keyframes fall{from{transform:translateY(-50px) rotate(0)}to{transform:translateY(760px) rotate(180deg)}}
+.confetti{position:fixed;pointer-events:none;font-size:22px;animation:pop 1.7s ease-out forwards}
+@keyframes pop{0%{transform:translate(0,0) scale(.5);opacity:1}100%{transform:translate(var(--x),var(--y)) rotate(500deg);opacity:0}}
+@media(max-height:720px){#app{min-height:590px}.card{min-height:590px;padding-top:28px}p{font-size:16px}.bunny{font-size:78px}}
+</style>
+</head>
+<body>
+<div id="app">
+  <div class="card">
+    <div class="float" aria-hidden="true">
+      <span style="left:8%;animation-delay:0s">♡</span>
+      <span style="left:24%;animation-delay:2s">♥</span>
+      <span style="left:73%;animation-delay:1s">♡</span>
+      <span style="left:88%;animation-delay:4s">♥</span>
+    </div>
+    <div class="progress"><div class="bar" id="bar"></div></div>
+
+    <section class="screen active" data-step="1">
+      <div class="bunny">🐰</div>
+      <div class="heart">♡</div>
+      <h1>hey mil...</h1>
+      <p>I made this little page because I wanted to say something properly instead of just sending another text.</p>
+      <p class="note">no pressure to reply right away</p>
+      <div class="actions"><button class="primary next">open this ♡</button></div>
+    </section>
+
+    <section class="screen" data-step="2">
+      <div class="bunny">🥺</div>
+      <h2>I know I hurt you</h2>
+      <div class="message">
+        <p><strong>I messed up...</strong> and I'm genuinely sorry for that.</p>
+        <p>I blamed things on you without properly listening to what you were feeling. I got angry and started overthinking instead of trying to understand you.</p>
+      </div>
+      <p class="small">You didn't deserve to be treated like that.</p>
+      <div class="actions"><button class="secondary back">← back</button><button class="primary next">keep reading →</button></div>
+    </section>
+
+    <section class="screen" data-step="3">
+      <div class="bunny">💗</div>
+      <h2>what I should've done</h2>
+      <div class="message">
+        <p>❤️ listened to you before reacting</p>
+        <p>❤️ asked what you were actually feeling</p>
+        <p>❤️ trusted you instead of letting my overthinking take over</p>
+        <p>❤️ talked to you calmly instead of yelling or getting cold</p>
+      </div>
+      <p>I can't undo how I acted, but I can be more careful about how I treat you from now on.</p>
+      <div class="actions"><button class="secondary back">← back</button><button class="primary next">one more thing →</button></div>
+    </section>
+
+    <section class="screen" data-step="4">
+      <div class="bunny">🫶</div>
+      <h2>I'm really sorry, mil</h2>
+      <div class="message">
+        <p>I care about you so much. Sometimes my fear of losing you makes me overthink things and react in ways that end up hurting the person I never wanted to hurt.</p>
+        <p><strong>That's an explanation, not an excuse.</strong></p>
+        <p>You deserve to feel heard, respected and cared for.</p>
+      </div>
+      <div class="actions"><button class="secondary back">← back</button><button class="primary next">last page ♡</button></div>
+    </section>
+
+    <section class="screen" data-step="5">
+      <div class="bunny">🐇</div>
+      <h2>can you forgive me?</h2>
+      <p>You don't have to answer immediately. I just wanted you to know that I'm genuinely sorry and that I mean it.</p>
+      <div class="actions">
+        <button class="primary" id="forgive">maybe... ♡</button>
+        <button class="secondary" id="time">I need some time</button>
+      </div>
+      <p id="reply" class="note" aria-live="polite"></p>
+      <div class="actions"><button class="secondary back">← read again</button></div>
+    </section>
+
+    <div class="dots" id="dots">● ○ ○ ○ ○</div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const screens=[...document.querySelectorAll('.screen')];
+  const bar=document.getElementById('bar');
+  const dots=document.getElementById('dots');
+  let step=0;
+
+  function render(){
+    screens.forEach((s,i)=>s.classList.toggle('active',i===step));
+    bar.style.width=((step+1)/screens.length*100)+'%';
+    dots.textContent=screens.map((_,i)=>i===step?'●':'○').join(' ');
+  }
+
+  function confetti(){
+    const symbols=['♥','♡','✦','💗','✨'];
+    for(let i=0;i<28;i++){
+      const el=document.createElement('span');
+      el.className='confetti';
+      el.textContent=symbols[Math.floor(Math.random()*symbols.length)];
+      el.style.left='50%'; el.style.top='45%';
+      el.style.setProperty('--x',((Math.random()-.5)*420)+'px');
+      el.style.setProperty('--y',((Math.random()-.5)*420)+'px');
+      document.body.appendChild(el);
+      setTimeout(()=>el.remove(),1800);
+    }
+  }
+
+  document.querySelectorAll('.next').forEach(b=>b.addEventListener('click',()=>{
+    if(step<screens.length-1){step++;render();}
+  }));
+  document.querySelectorAll('.back').forEach(b=>b.addEventListener('click',()=>{
+    if(step>0){step--;render();}
+  }));
+
+  document.getElementById('forgive').addEventListener('click',()=>{
+    document.getElementById('reply').textContent='thank you for hearing me out 🥺♡';
+    confetti();
+  });
+  document.getElementById('time').addEventListener('click',()=>{
+    document.getElementById('reply').textContent="take all the time you need. i’ll respect that 🤍";
+  });
+})();
+</script>
+</body>
+</html>
